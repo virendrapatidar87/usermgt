@@ -12,7 +12,7 @@ class UserMgtController {
   addUser(req,res){
     console.log(req.body)
    var reqUserData = new usermgt(req.body);
-   reqUserData.password = reqUser.generateHash('user1234');
+   reqUserData.password = reqUserData.generateHash('user1234');
    
 
    reqUserData.createdDate = commonUtils.getCurrnetDate();
