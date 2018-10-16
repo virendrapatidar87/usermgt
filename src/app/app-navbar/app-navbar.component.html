@@ -1,0 +1,73 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <div class="nav-link">
+                <div class="profile-image">
+                  <img src="assets/images/faces/face10.jpg" alt="image"/>
+                  <span class="online-status online"></span> <!--change class online to offline or busy as needed-->
+                </div>
+                <div class="profile-name">
+                  <p class="name">
+                    Marina Michel
+                  </p>
+                  <p class="designation">
+                    Super Admin
+                  </p>
+                </div>
+              </div>
+            </li>
+			
+			<li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" [routerLink]="['/manageuser']" href="#"  >
+                <i class="icon-user menu-icon"></i>
+                <span class="menu-title">Manage User</span>
+                
+              </a>
+           
+                
+            
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                <i class="icon-anchor menu-icon"></i>
+                <span class="menu-title">Manage Pages</span>
+                <span class="badge badge-info">4</span>
+              </a>
+              <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/flag-icons.html">About Us</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Contact Us</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">Terms & Condition</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/themify.html">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </li>
+           <li class="nav-item">
+		   <a class="nav-link" href="pages/icons/themify.html">
+		    <i class="icon-globe menu-icon"></i>
+                <span class="menu-title">Manage Tips</span>
+               
+		   </a>
+		   </li>
+            <li class="mt-4 nav-item nav-progress">
+              <h6 class="nav-progress-heading mt-4 font-weight-normal">
+                Today's Sales
+                <span class="nav-progress-sub-heading">
+                  50 sold
+                </span>
+              </h6>
+              <div class="progress progress-sm">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <h6 class="nav-progress-heading mt-4 font-weight-normal">
+                Customer target
+                <span class="nav-progress-sub-heading">
+                  500
+                </span>
+              </h6>
+              <div class="progress progress-sm">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </li>
+          </ul>
+        </nav>

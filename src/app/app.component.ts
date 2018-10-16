@@ -27,10 +27,10 @@ export class AppComponent {
 
   ngOnInit() {
         
-    if(localStorage.getItem('currentUser')== null){
+    // if(localStorage.getItem('currentUser')== null){
       
-      this.router.navigate(['/login']);
-    }
+      // this.router.navigate(['/login']);
+    // }
   
 
   }

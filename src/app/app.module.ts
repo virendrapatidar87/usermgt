@@ -15,13 +15,18 @@ import { MyHttpInterceptor } from './my-http-interceptor';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
-
-
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { AppFooterComponent } from './app-footer/app-footer.component';
+import {UserlistComponent} from './users/userlist/userlist.component';
+import {AdduserComponent} from './users/adduser/adduser.component';
+import {ViewuserComponent} from './users/viewuser/viewuser.component';
 
 const appRoutes: Routes = [
    { path: 'dashboard', component: DashboardComponent },
    { path: 'login', component: LoginComponent },
-   { path: 'register', component: RegisterComponent }];
+   { path: 'manageuser', component: UserlistComponent },
+
+   { path: '', component: DashboardComponent }];
 
 
 @NgModule({
@@ -31,6 +36,11 @@ const appRoutes: Routes = [
     AppHeaderComponent,
     DashboardComponent,
     RegisterComponent,
+    AppNavbarComponent,
+    AppFooterComponent,
+    UserlistComponent,
+    AdduserComponent,
+    ViewuserComponent
 
   ],
   imports: [
@@ -42,7 +52,7 @@ const appRoutes: Routes = [
   ],
   entryComponents: [
     LoginComponent,
-    DashboardComponent,RegisterComponent],
+    DashboardComponent,RegisterComponent,AppNavbarComponent,UserlistComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: MyHttpInterceptor,
