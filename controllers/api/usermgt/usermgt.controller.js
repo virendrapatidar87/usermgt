@@ -1,10 +1,8 @@
 const usermgt = require('../../../models/usermgt'),
 verifytoken = require('../../../config/verifytoken'),
-commonutils = require('../../../config/common')
+commonutils = require('../../../config/common'),
+commonUtils = new commonutils();
 class UserMgtController {
-  
-  commonUtils = new commonutils();
-  
   constructor(router) {
 	  router.post('/addUser', verifytoken, this.addUser.bind(this));
     router.put('/updateUser', verifytoken, this.updateUser.bind(this));
@@ -15,6 +13,8 @@ class UserMgtController {
     console.log(req.body)
    var reqUserData = new usermgt(req.body);
    reqUserData.password = reqUser.generateHash('user1234');
+   
+
    reqUserData.createdDate = commonUtils.getCurrnetDate();
    reqUserData.updatedDate = reqUserData.createdDate;
    reqUserData.role = 'user';
@@ -30,6 +30,7 @@ class UserMgtController {
   updateUser(req,res){
     console.log(req.body)
     var umgt = new usermgt(req.body);
+  
     umgt.updatedDate = commonUtils.getCurrnetDate();
 
     project.findByIdAndUpdate(req.body.id,JSON.stringify(umgt),function (err, data) {
