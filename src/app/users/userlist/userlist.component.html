@@ -2,10 +2,10 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">Order status</h6>
+        <h6 class="card-title">Manage Users</h6>
         <div class="d-flex table-responsive">
           <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-info"><i class="mdi mdi-plus-circle-outline"></i> Add</button>
+            <a [routerLink]="['/adduser']" class="btn btn-sm btn-info"><i class="mdi mdi-plus-circle-outline"></i> Add</a>
           </div>
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-light"><i class="mdi mdi-alert-circle-outline"></i></button>
@@ -43,30 +43,7 @@
                 <td>$2100</td>
                 <td><div class="badge badge-success badge-fw">Progress</div></td>
               </tr>
-              <tr>
-                <td>50015</td>
-                <td>Stella Johnson</td>
-                <td>Brazil</td>
-                <td>$4500</td>
-                <td>$4300</td>
-                <td><div class="badge badge-warning badge-fw">Open</div></td>
-              </tr>
-              <tr>
-                <td>50016</td>
-                <td>Marina Michel</td>
-                <td>Japan</td>
-                <td>$4300</td>
-                <td>$6440</td>
-                <td><div class="badge badge-danger badge-fw">On hold</div></td>
-              </tr>
-              <tr>
-                <td>50017</td>
-                <td>John Doe</td>
-                <td>India</td>
-                <td>$6400</td>
-                <td>$2200</td>
-                <td><div class="badge badge-success badge-fw">Progress</div></td>
-              </tr>
+             
             </tbody>
           </table>
         </div>

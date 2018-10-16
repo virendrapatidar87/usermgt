@@ -1,3 +1,101 @@
-<p>
-  adduser works!
-</p>
+
+<!-- <div class="row grid-margin">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User Details</h4>
+          <form class="cmxform"  novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+  <fieldset>
+    <div class="form-group has-danger">
+  <label>
+    Full name </label>
+    <input type="text" placeholder="Your full name" class="form-control " formControlName="fullName">
+ 
+ 
+  <div class="error mt-2 text-danger" *ngIf="user.get('fullName').touched && user.get('fullName').invalid">
+    <div *ngIf="user.get('fullName').required">Full name required!</div>
+    <div *ngIf="user.get('fullName').minlength">Full name at least have 3 charactors long!</div>
+    <div *ngIf="user.get('fullName').maxlength">Full name should not exeeds 20 charactors long!</div>
+  </div>
+  </div>
+  
+  <div class="form-group has-danger">
+    <label>
+      Email address</label>
+      <input type="email" class="form-control " ng-class="user.get('email').invalid?'form-control-danger':''" placeholder="Your email address" formControlName="email">
+    
+   
+    <div class="error mt-2 text-danger" *ngIf="user.get('email').touched && user.get('email').invalid">
+      <div *ngIf="user.get('email').required">Email is required!</div>
+      <div *ngIf="user.get('email').email">not valid email!</div>
+      
+    </div>
+  </div>
+  <div class="form-group has-danger"> <label>
+     Date Of Birth</label>
+      <input type="datetime" placeholder="DOB" formControlName="dateofbirth">
+    
+    </div>
+ 
+  <button class="btn btn-primary" type="submit" [disabled]="user.invalid">Save</button>
+</fieldset>
+</form>
+  </div>
+ </div>
+ </div>
+</div> -->
+
+<div class="col-lg-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">User Details</h4>
+
+<form class="cmxform" id="commentForm" (ngSubmit)="onSubmit()" [formGroup]="user" novalidate="novalidate">
+  <fieldset>
+    <div class="form-group " >
+      <label for="fullName">Full Name </label>
+      <input  id="fullName"  class="form-control form-control-danger" formControlName="fullName"  type="text" >
+      <div *ngIf="fullName.touched && fullName.invalid" id="fullName-error" class=" mt-2 " for="fullName">
+        <div class="mt-2 text-danger" *ngIf="fullName.errors.required">Full name required!</div>
+    <div class="mt-2 text-danger" *ngIf="fullName.errors.minlength">Full name at least have 3 charactors long!</div>
+    <div class="mt-2 text-danger" *ngIf="fullName.errors.maxlength">Full name should not exeeds 20 charactors long!</div>
+      </div>
+    </div>
+    <div class="form-group " >
+      <label for="email">Email </label>
+      <input  id="email" class="form-control form-control-danger" formControlName="email"  type="text" email>
+      <div *ngIf="email.touched && email.invalid" id="email-error" class=" mt-2 " for="email">
+        <span class="mt-2 text-danger" *ngIf="email.errors.required">Email required!</span>
+    <span class="mt-2 text-danger" *ngIf="email.errors.email && !email.errors.required">Provide valid mail address!</span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label lbl">Gender</label>
+      <div class="col-sm-4">
+        <div class="form-radio">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="gender" formControlName="gender" id="gender" value="m" checked="">
+            Male
+          <i class="input-helper"></i></label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-radio">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="gender" formControlName="gender" id="gender" value="f">
+            Female
+          <i class="input-helper"></i></label>
+        </div>
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="user.invalid" class="btn btn-success mr-2">Submit</button>
+   
+    <button class="btn btn-light" (click)="Cancel()" type="button">Cancel</button>
+  
+  </fieldset>
+</form>
+</div>
+</div>
+</div>

@@ -10,7 +10,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -21,11 +22,14 @@ import {UserlistComponent} from './users/userlist/userlist.component';
 import {AdduserComponent} from './users/adduser/adduser.component';
 import {ViewuserComponent} from './users/viewuser/viewuser.component';
 
+import { UsersvcService } from './users/usersvc.service';
+
+
 const appRoutes: Routes = [
    { path: 'dashboard', component: DashboardComponent },
    { path: 'login', component: LoginComponent },
    { path: 'manageuser', component: UserlistComponent },
-
+   { path: 'adduser', component: AdduserComponent },
    { path: '', component: DashboardComponent }];
 
 
@@ -57,7 +61,9 @@ const appRoutes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: MyHttpInterceptor,
     multi: true
-  },  LoginService, ],
+  },  LoginService,
+  
+   UsersvcService],
 
   bootstrap: [AppComponent]
 })
