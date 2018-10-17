@@ -1,6 +1,7 @@
 const express = require('express'),
 	  bodyParser = require('body-parser'),
 	  db = require("./database/database"),
+	  dbseed = require("./config/dbseeder"),
 	  router = require('./routes/router'),
 	  app = express();
 	  
@@ -9,7 +10,7 @@ app.use(bodyParser());
 app.use(bodyParser.json({limit:'5mb'}));   
 app.use(bodyParser.urlencoded({extended:true}));  
 db.connectDB();
-
+dbseed.seed();
 app.use(function (req, res, next) {        
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');    
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
