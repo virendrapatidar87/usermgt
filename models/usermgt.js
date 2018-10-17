@@ -26,8 +26,8 @@ const userMgtSchema = mongoose.Schema({
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
     
-    userMgtSchema.methods.genrateToken = function(emailId,userId,role){
-        var token = jwt.sign({ id: userId, email : emailId, userrole : role  }, config.secret, {
+    userMgtSchema.methods.genrateToken = function(userObj){
+        var token = jwt.sign({ id: userObj._id, email : userObj.email, role : userObj.role  }, config.secret, {
             expiresIn: 82000 // expires in 24 hours
           });
     return token;

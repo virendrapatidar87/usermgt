@@ -29,6 +29,7 @@ const appRoutes: Routes = [
    { path: 'dashboard', component: DashboardComponent },
    { path: 'login', component: LoginComponent },
    { path: 'manageuser', component: UserlistComponent },
+   { path: 'adduser/:id', component: AdduserComponent },
    { path: 'adduser', component: AdduserComponent },
    { path: '', component: DashboardComponent }];
 

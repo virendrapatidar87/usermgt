@@ -17,6 +17,6 @@ export class LoginService {
   }
 
   login(user) : Observable<any>{
-    return this.http.post('http://localhost:8080/api/user/login/', user)
+    return this.http.post('http://localhost:8080/api/usermgt/login/', user)
 }
 }

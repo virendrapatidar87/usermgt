@@ -8,6 +8,6 @@ export interface User {
     targetId:number;
     updatedDate:string;
     RegisteredVia:string;
-    astLoginDate:string;
+    LastLoginDate:string;
     LastLoginDevice:string;
   }

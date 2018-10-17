@@ -10,7 +10,7 @@ class CommonUtils {
 
     var now = new Date();
     
-  return dateformat(now, "ddmmyyyy, hh:MM:ss TT");
+  return dateformat(now, "ddmmyyyy"); //, hh:MM:ss TT
   }
 }
 module.exports = CommonUtils;

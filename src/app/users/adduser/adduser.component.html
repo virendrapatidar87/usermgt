@@ -54,6 +54,7 @@
   <fieldset>
     <div class="form-group " >
       <label for="fullName">Full Name </label>
+      <input  id="id"  class="form-control form-control-danger" formControlName="id"  type="hidden" >
       <input  id="fullName"  class="form-control form-control-danger" formControlName="fullName"  type="text" >
       <div *ngIf="fullName.touched && fullName.invalid" id="fullName-error" class=" mt-2 " for="fullName">
         <div class="mt-2 text-danger" *ngIf="fullName.errors.required">Full name required!</div>
