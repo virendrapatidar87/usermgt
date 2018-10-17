@@ -13,7 +13,7 @@ class DBConnectivity{
 				console.log('Connected to ' + db, ' + ', response);
 			}
 		});
-		
+		return db;
 	}
 }
 

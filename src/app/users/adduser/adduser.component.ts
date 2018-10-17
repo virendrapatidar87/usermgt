@@ -14,6 +14,7 @@ import { User } from '../user';
 export class AdduserComponent implements OnInit {
   user: FormGroup;
   editId;
+  btnSubmit = "Submit";
   constructor(private usvc:UsersvcService,private fb: FormBuilder,private route: ActivatedRoute, private router: Router) {
 
     
@@ -23,6 +24,7 @@ export class AdduserComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => { this.editId = params['id']});
     console.log(this.editId + "   hjkasdhjkgjhsa");
+     
     if(this.editId){
       this.usvc.getDataById(this.editId.trim()).subscribe(returndata => this.assignValue(returndata));
     }
@@ -48,7 +50,7 @@ export class AdduserComponent implements OnInit {
       'id': data._id,
       'dateofbirth': 'sadsa',
     })
-      
+    this.btnSubmit = "Update";
     }
   get fullName() { return this.user.get('fullName'); }
    get email() { return this.user.get('email'); }
@@ -64,12 +66,21 @@ export class AdduserComponent implements OnInit {
      //user.mode = this.valbutton;
      var result;
      var u:User = this.user.value;
-     u.RegisteredVia = "Admin Panel";
+    
+     if(this.btnSubmit == "Submit"){
+      u.RegisteredVia = "Admin Panel";
      this.usvc.saveData(u).subscribe(data => { result = data;
       // localStorage.removeItem('currentUser');
      this.router.navigate(['/manageuser']);
     }
        , error =>  error);
+    }else{
+    this.usvc.updateData(u).subscribe(data => { result = data;
+      // localStorage.removeItem('currentUser');
+     this.router.navigate(['/manageuser']);
+    }
+       , error =>  error);
+  }
     console.log(this.user.value);
       
     }

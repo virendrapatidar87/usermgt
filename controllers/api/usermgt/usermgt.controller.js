@@ -32,16 +32,17 @@ class UserMgtController {
   }   
   updateUser(req,res){
     console.log(req.body)
-    var umgt = new usermgt(req.body);
-  
-    umgt.updatedDate = commonUtils.getCurrnetDate();
-
-    project.findByIdAndUpdate(req.body.id,JSON.stringify(umgt),function (err, data) {
+    //var umgt = new usermgt(req.body);
+  var umgt = JSON.parse(JSON.stringify(req.body));
+    var updatedDate = commonUtils.getCurrnetDate();
+   // {updatedDate : updatedDate ,email : req.body.email, fullName : req.body.fullName, gender : req.body.gender}
+    usermgt.findByIdAndUpdate(req.body.id,umgt
+      ,function (err, data) {
             if (err) {
                  res.send(err);
              } else {
                  res.send({
-                     data: "Project has been updated..!!"
+                     data: "User has been updated..!!"
                  });
              }
          });
@@ -71,7 +72,7 @@ class UserMgtController {
         if(passwordIsValid){
         var newUser = new usermgt(data);
          var genToken = newUser.genrateToken(newUser);
-          res.status(200).send({auth : true , token : genToken});
+          res.status(200).send({auth : true , token : genToken, user : {role : newUser.role, name : newUser.fullName, email : newUser.email}});
         }else{
           return res.status(401).send({ auth: false, token: null });
         }
