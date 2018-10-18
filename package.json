@@ -40,6 +40,7 @@
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.3",
     "morris.js": "^0.5.0",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.3",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.14.4",

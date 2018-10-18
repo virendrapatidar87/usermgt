@@ -23,15 +23,17 @@ import {AdduserComponent} from './users/adduser/adduser.component';
 import {ViewuserComponent} from './users/viewuser/viewuser.component';
 
 import { UsersvcService } from './users/usersvc.service';
+import { AuthGaurdService } from './auth-gaurd.service';
+import { AuthService } from './auth.service';
 
 
 const appRoutes: Routes = [
-   { path: 'dashboard', component: DashboardComponent },
+   { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGaurdService] },
    { path: 'login', component: LoginComponent },
-   { path: 'manageuser', component: UserlistComponent },
-   { path: 'adduser/:id', component: AdduserComponent },
-   { path: 'adduser', component: AdduserComponent },
-   { path: '', component: DashboardComponent }];
+   { path: 'manageuser', component: UserlistComponent,canActivate:[AuthGaurdService] },
+   { path: 'adduser/:id', component: AdduserComponent,canActivate:[AuthGaurdService] },
+   { path: 'adduser', component: AdduserComponent,canActivate:[AuthGaurdService] },
+   { path: '', component: DashboardComponent,canActivate:[AuthGaurdService] }];
 
 
 @NgModule({
@@ -64,7 +66,7 @@ const appRoutes: Routes = [
     multi: true
   },  LoginService,
   
-   UsersvcService],
+   UsersvcService,AuthService,AuthGaurdService],
 
   bootstrap: [AppComponent]
 })

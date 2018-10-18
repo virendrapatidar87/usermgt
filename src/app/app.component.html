@@ -44,7 +44,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav *ngIf="isLoggedIn$ | async" class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo"/></a>
@@ -229,10 +229,10 @@
     <div class="container-fluid page-body-wrapper">
 		<div class="row row-offcanvas row-offcanvas-right">
 
-				<app-header [isUserLoggedIn]="true"></app-header>
+				<app-header *ngIf="isLoggedIn$ | async" ></app-header>
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
-        <app-navbar ></app-navbar>
+        <app-navbar *ngIf="isLoggedIn$ | async"  ></app-navbar>
         <!-- partial -->
 		<div class="content-wrapper">
         <router-outlet></router-outlet> 
@@ -240,13 +240,15 @@
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
        
-<app-footer class="footer-width"></app-footer>
+       <app-footer class="footer-width"></app-footer>
         <!-- partial -->
       </div>
       <!-- row-offcanvas ends -->
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+
+  
   <!-- container-scroller -->
   
   <!-- endinject -->
@@ -261,4 +263,6 @@
   
   
 </body>
+
+
   
