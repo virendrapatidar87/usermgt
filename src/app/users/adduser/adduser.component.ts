@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UsersvcService} from '../usersvc.service';
 import { User } from '../user';
+import { isNullOrUndefined } from 'util';
 
 
 //imp
@@ -37,7 +38,8 @@ export class AdduserComponent implements OnInit {
         gender:[''],
         dateofbirth: [''],
         id: [''],
-        userPic: ['']
+        userPic: [null],
+        file: [null]
     });
     
   
@@ -50,8 +52,8 @@ export class AdduserComponent implements OnInit {
       'gender': data.gender,
       'id': data._id,
       'dateofbirth': 'sadsa',
-      'userPic' : [null, Validators.required],
-      file : [null,Validators.required]
+      'userPic':'',
+      'file':''
     })
     this.btnSubmit = "Update";
     }
@@ -106,13 +108,13 @@ export class AdduserComponent implements OnInit {
         reader.onload = () => {
           this.user.patchValue({
             file: reader.result
+            
          });
-       
+        console.log(' dfds '+reader.result);
           // need to run CD since file load runs outside of zone
          this.cd.markForCheck();
         };
-
-        console.log(reader.result + "-------------------");
+        
       }
     }
 }

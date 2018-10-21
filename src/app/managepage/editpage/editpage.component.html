@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
         <div class="form-group">
-          <input type="hidden"  [(ngModel)]="objPage._id">
+          
           <label for="Title">Title</label>
           <input #title="ngModel" [(ngModel)]="objPage.Title" name="Title" id="Title" type="text" class="form-control" required>
           <div class="alert alert-danger" *ngIf="title.touched && title.invalid">

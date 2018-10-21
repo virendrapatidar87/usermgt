@@ -3,15 +3,17 @@ verifytoken = require('../../../config/verifytoken'),
 commonutils = require('../../../config/common'),
 multer  =   require('multer'),
 fs= require('fs'),
-storage =   multer.diskStorage({
+usertarget = require('../../../models/usertarget');
+
+/*storage =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, '../uploads');
   },
   filename: function (req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now());
   }
-}),
-upload = multer({ storage : storage}).single('file');
+}),*/
+//upload = multer({ storage : storage}).single('file');
 
 
 commonUtils = new commonutils();
@@ -24,6 +26,7 @@ class UserMgtController {
     router.get('/:id', verifytoken, this.getById.bind(this)); 
     router.delete('/:id',verifytoken, this.delete.bind(this));
     router.post('/login', this.login.bind(this));
+   // this.addTarget.bind(this)
   }
 
   addUser(req,res){
@@ -47,12 +50,39 @@ class UserMgtController {
       if (err) {
         res.send(err);
       } else {
+        
          if(req.body.file){
            var filename=data._id+"_avtar.jpg";
           
           fs.writeFile('uploads/'+filename, imageBuffer.data, function(err) {});
           
         }
+        
+        
+        
+         var usertargetObj = new usertarget();
+         usertargetObj.target= commonUtils.getRandomInt() ;
+         console.log(usertargetObj.target +"****************************************");
+        var ac=((parseInt(usertargetObj.target)*70)/100);
+        console.log(ac +"****************************************");
+         usertargetObj.achiveTarget =ac;
+         usertargetObj.userId=data._id;
+         usertargetObj.createdDate=commonUtils.getCurrnetDate();
+         usertargetObj.targetAchivedDate =commonUtils.getCurrnetDate();
+        
+         usertargetObj.save(function(err, data) {
+            if (err) {
+            //  res.send(err);
+          console.log(err+" target");  
+          } else {
+               console.log('Target Added '+data);
+              //res.status(200).send({value : 'user added succesfull'});
+            }
+          });
+          
+        
+
+
         res.status(200).send({value : 'user added succesfull'});
       }
     });
@@ -189,5 +219,8 @@ getById(req, res, next) {
       }
   });
 }
- }
+
+ 
+}
 module.exports = UserMgtController;
+

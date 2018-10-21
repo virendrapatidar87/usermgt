@@ -70,7 +70,7 @@
     <span class="mt-2 text-danger" *ngIf="email.errors.email && !email.errors.required">Provide valid mail address!</span>
       </div>
     </div>
-    <div class="form-group " >
+    <div class="form-group " *ngIf = "!editId">
         <label for="userPic">User Pic </label>
         <input  id="userPic" class="form-control form-control-danger" formControlName="userPic" (change)="onFileChange($event)" type="file">
         
@@ -96,7 +96,7 @@
       
     </div>
     
-    <button type="submit" [disabled]="user.invalid" class="btn btn-primery mr-2">{{btnSubmit}}</button>
+    <button type="submit" [disabled]="user.invalid" class="btn btn-success mr-2">{{btnSubmit}}</button>
    
     <button class="btn btn-light" (click)="Cancel()" type="button">Cancel</button>
   

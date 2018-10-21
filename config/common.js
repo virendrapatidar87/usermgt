@@ -12,5 +12,10 @@ class CommonUtils {
     
   return dateformat(now, "ddmmyyyy"); //, hh:MM:ss TT
   }
+
+  getRandomInt() {
+    return Math.floor(Math.random() * Math.floor(1000));
+  }
+  
 }
 module.exports = CommonUtils;

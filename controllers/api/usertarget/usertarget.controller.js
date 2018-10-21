@@ -1,4 +1,4 @@
-const usermgt = require('../../../models/usertarget');
+const usertarget = require('../../../models/usertarget');
 
 class UserTargetController {
 
@@ -6,7 +6,8 @@ class UserTargetController {
 	/*   router.post('/addUser', this.addUser.bind(this));
     router.put('/updateUser', this.updateUser.bind(this));
     */
-    router.get('/listTargetes', this.listTarget.bind(this));   
+    router.get('/', this.listTarget.bind(this));  
+    router.get('/user/:uid', this.getByUserId.bind(this));    
   }
 
  /*  addUser(req,res){
@@ -42,7 +43,7 @@ class UserTargetController {
  }
  */
   listTarget(req, res) {
-      usermgt.find({}, function (err, data) {
+    usertarget.find({}, function (err, data) {
           if (err) {
               res.send(err);
           } else {
@@ -50,5 +51,16 @@ class UserTargetController {
           }
       });
   }
+  getByUserId(req, res) {
+      
+    usertarget.find({'userId' : req.params.uid}, function (err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+}
+  
  }
 module.exports = UserTargetController;

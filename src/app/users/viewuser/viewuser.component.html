@@ -1,3 +1,15 @@
 <p>
   viewuser works!
 </p>
+<div>
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartData"
+      [labels]="labels"
+      [options]="chartOptions"
+      [legend]="true"
+      [colors]="colors"
+      (chartClick)="onChartClick($event)">
+  </canvas>
+</div>

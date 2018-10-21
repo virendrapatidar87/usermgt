@@ -40,7 +40,8 @@
 			"node_modules/chart.js/dist/Chart.min.js",
 			"node_modules/raphael/raphael.min.js",
 			"node_modules/morris.js/morris.min.js",
-			"node_modules/jquery-sparkline/jquery.sparkline.min.js"
+      "node_modules/jquery-sparkline/jquery.sparkline.min.js",
+      "node_modules/chart.js/dist/Chart.min.js"
 			
 			
 			]

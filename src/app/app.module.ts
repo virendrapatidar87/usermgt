@@ -27,9 +27,9 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
 import {NgxEditorModule} from 'ngx-editor';
 import { EditpageComponent } from './managepage/editpage/editpage.component';
-
+import { ChartsModule } from 'ng2-charts'
 const appRoutes: Routes = [
-   { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGaurdService] },
+   { path: 'dashboard', component: ViewuserComponent,canActivate:[AuthGaurdService] },
    { path: 'login', component: LoginComponent },
    { path: 'manageuser', component: UserlistComponent,canActivate:[AuthGaurdService] },
    { path: 'adduser/:id', component: AdduserComponent,canActivate:[AuthGaurdService] },
@@ -56,7 +56,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule, HttpClientModule,  BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
-    NgxEditorModule, RouterModule.forRoot(
+    NgxEditorModule,ChartsModule, RouterModule.forRoot(
 
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
