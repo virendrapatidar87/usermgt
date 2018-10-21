@@ -25,7 +25,8 @@ import {ViewuserComponent} from './users/viewuser/viewuser.component';
 import { UsersvcService } from './users/usersvc.service';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
-
+import {NgxEditorModule} from 'ngx-editor';
+import { EditpageComponent } from './managepage/editpage/editpage.component';
 
 const appRoutes: Routes = [
    { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGaurdService] },
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
    { path: 'manageuser', component: UserlistComponent,canActivate:[AuthGaurdService] },
    { path: 'adduser/:id', component: AdduserComponent,canActivate:[AuthGaurdService] },
    { path: 'adduser', component: AdduserComponent,canActivate:[AuthGaurdService] },
+   { path: 'managePage/:id', component:EditpageComponent,canActivate:[AuthGaurdService]},
    { path: '', component: DashboardComponent,canActivate:[AuthGaurdService] }];
 
 
@@ -48,11 +50,13 @@ const appRoutes: Routes = [
     UserlistComponent,
     AdduserComponent,
     ViewuserComponent,
-    
+    EditpageComponent
+
 
   ],
   imports: [
-    BrowserModule, HttpClientModule,  BrowserAnimationsModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(
+    BrowserModule, HttpClientModule,  BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
+    NgxEditorModule, RouterModule.forRoot(
 
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

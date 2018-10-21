@@ -50,7 +50,8 @@ export class AdduserComponent implements OnInit {
       'gender': data.gender,
       'id': data._id,
       'dateofbirth': 'sadsa',
-      'userPic' : ''
+      'userPic' : [null, Validators.required],
+      file : [null,Validators.required]
     })
     this.btnSubmit = "Update";
     }
@@ -106,10 +107,12 @@ export class AdduserComponent implements OnInit {
           this.user.patchValue({
             file: reader.result
          });
-        
+       
           // need to run CD since file load runs outside of zone
          this.cd.markForCheck();
         };
+
+        console.log(reader.result + "-------------------");
       }
     }
 }

@@ -5,7 +5,7 @@ class DBConnectivity{
 		
 	}
 	connectDB(){
-		const db = mongo.connect("mongodb://localhost:27017/usermgt2", function(err,
+		const db = mongo.connect("mongodb://localhost:27017/usermgt4", function(err,
 				response) {
 			if (err) {
 				console.log(err);

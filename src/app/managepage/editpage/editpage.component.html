@@ -1,0 +1,58 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+        <div *ngIf="!showPreview" class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+        <div class="form-group">
+          <input type="hidden"  [(ngModel)]="objPage._id">
+          <label for="Title">Title</label>
+          <input #title="ngModel" [(ngModel)]="objPage.Title" name="Title" id="Title" type="text" class="form-control" required>
+          <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            Title is required.
+          </div>
+        </div> 
+        <div class="form-group">
+          <label for="Discription">Discription</label>
+          <app-ngx-editor #desc="ngModel" name="Discription" [config]="editorConfig" required [spellcheck]="true" [(ngModel)]="objPage.Discription"></app-ngx-editor>
+          <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid">
+            Description is required.
+          </div>
+        </div>
+        <button [disabled]="f.invalid" class="btn btn-primary mr-2">Save</button>
+        <button type="button" [disabled]="f.invalid" (click)="preview()" class="btn btn-primary mr-2">Preview</button>
+        <button class="btn btn-light" (click)="cancel()" type="button">Cancel</button>
+      </div>
+     
+    </div>
+  </div>
+        
+        
+
+        <!-- <div class="form-group">
+         <div style="font-weight: bold; font-size:16px;" [innerHTML]="objPage.Title"></div>
+
+        </div>
+        <div class="form-group">
+          
+          <div [innerHTML]="objPage.Discription"></div>
+        </div> -->
+
+        <div *ngIf="showPreview" class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title" [innerHTML]="objPage.Title" ></h4>
+              <p [innerHTML]="objPage.Discription" class="card-description">
+                Basic form layout
+              </p>
+              <button [disabled]="f.invalid" class="btn btn-primary mr-2">Save</button>
+              <button class="btn btn-light" (click)="back()" type="button">back</button>
+            </div>
+            
+          </div>
+        </div>
+      </form>    
+  </div>
+  
+</div>
