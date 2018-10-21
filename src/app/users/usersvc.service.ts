@@ -18,6 +18,10 @@ export class UsersvcService {
    }
   saveData(dataobject) : Observable<any> {
     console.log("save data");
+   // const formdata: FormData = new FormData();
+   // formdata.append('body',dataobject);
+    //formdata.append('file', file);
+
     let headers = new HttpHeaders({'x-access-token':this.getToken()});
     console.log("save data"+this.getToken());
     return this.http.post(this.path, dataobject ,{ headers : headers});
@@ -40,5 +44,9 @@ export class UsersvcService {
   getDataById(id) : Observable<any>  {
     let header = new HttpHeaders({'x-access-token':this.getToken()});
        return this.http.get(this.path+id,{headers : header})
+  }
+  getImgById(id) : any  {
+    let header = new HttpHeaders({'x-access-token':this.getToken()});
+       return this.http.get(this.path+"avatar/"+id,{headers : header})
   }
 }

@@ -50,7 +50,7 @@
     <div class="card-body">
       <h4 class="card-title">User Details</h4>
 
-<form class="cmxform" id="commentForm" (ngSubmit)="onSubmit()" [formGroup]="user" novalidate="novalidate">
+<form enctype="multipart/form-data" class="cmxform" id="commentForm" (ngSubmit)="onSubmit()" [formGroup]="user" novalidate="novalidate">
   <fieldset>
     <div class="form-group " >
       <label for="fullName">Full Name </label>
@@ -70,7 +70,11 @@
     <span class="mt-2 text-danger" *ngIf="email.errors.email && !email.errors.required">Provide valid mail address!</span>
       </div>
     </div>
-
+    <div class="form-group " >
+        <label for="userPic">User Pic </label>
+        <input  id="userPic" class="form-control form-control-danger" formControlName="userPic" (change)="onFileChange($event)" type="file">
+        
+      </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label lbl">Gender</label>
       <div class="col-sm-4">
@@ -89,6 +93,7 @@
           <i class="input-helper"></i></label>
         </div>
       </div>
+      
     </div>
     
     <button type="submit" [disabled]="user.invalid" class="btn btn-success mr-2">{{btnSubmit}}</button>

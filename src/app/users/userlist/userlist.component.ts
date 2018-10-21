@@ -35,5 +35,8 @@ export class UserlistComponent implements OnInit {
     /* this.id = id;
     this.openDialog(); */
   }
-  
+   getImg(id){
+   console.log("------------------------------------------------------");
+   return this.usvc.getImgById(id)
+      }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UsersvcService} from '../usersvc.service';
@@ -15,7 +15,8 @@ export class AdduserComponent implements OnInit {
   user: FormGroup;
   editId;
   btnSubmit = "Submit";
-  constructor(private usvc:UsersvcService,private fb: FormBuilder,private route: ActivatedRoute, private router: Router) {
+  //userPic;
+  constructor(private usvc:UsersvcService,private fb: FormBuilder,private cd: ChangeDetectorRef,private route: ActivatedRoute, private router: Router) {
 
     
    }
@@ -35,8 +36,9 @@ export class AdduserComponent implements OnInit {
         email: ['', [Validators.required,Validators.email]],
         gender:[''],
         dateofbirth: [''],
-        id: ['']
-      
+        id: [''],
+        userPic: [null, Validators.required],
+        file: [null, Validators.required]
     });
     
   
@@ -69,12 +71,14 @@ export class AdduserComponent implements OnInit {
     
      if(this.btnSubmit == "Submit"){
       u.RegisteredVia = "Admin Panel";
+      console.log(JSON.stringify(u));
      this.usvc.saveData(u).subscribe(data => { result = data;
       // localStorage.removeItem('currentUser');
      this.router.navigate(['/manageuser']);
     }
        , error =>  error);
     }else{
+
     this.usvc.updateData(u).subscribe(data => { result = data;
       // localStorage.removeItem('currentUser');
      this.router.navigate(['/manageuser']);
@@ -91,5 +95,21 @@ export class AdduserComponent implements OnInit {
       this.router.navigate(['/manageuser']);
     }
   
-
+    onFileChange(event) {
+      const reader = new FileReader();
+   console.log("++++++++++++++++++++++++++++++++++++++++++++++");
+      if(event.target.files && event.target.files.length) {
+        const [file] = event.target.files;
+        reader.readAsDataURL(file);
+    
+        reader.onload = () => {
+          this.user.patchValue({
+            file: reader.result
+         });
+        
+          // need to run CD since file load runs outside of zone
+         this.cd.markForCheck();
+        };
+      }
+    }
 }

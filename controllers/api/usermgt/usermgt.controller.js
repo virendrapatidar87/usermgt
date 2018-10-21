@@ -1,12 +1,26 @@
 const usermgt = require('../../../models/usermgt'),
 verifytoken = require('../../../config/verifytoken'),
 commonutils = require('../../../config/common'),
+multer  =   require('multer'),
+fs= require('fs'),
+storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, '../uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+}),
+upload = multer({ storage : storage}).single('file');
+
+
 commonUtils = new commonutils();
 class UserMgtController {
   constructor(router) {
 	router.post('/', verifytoken, this.addUser.bind(this));
     router.put('/', verifytoken, this.updateUser.bind(this));
     router.get('/', verifytoken, this.listUser.bind(this));  
+    router.get('/avatar/:id',  this.getImg.bind(this));  
     router.get('/:id', verifytoken, this.getById.bind(this)); 
     router.delete('/:id',verifytoken, this.delete.bind(this));
     router.post('/login', this.login.bind(this));
@@ -22,14 +36,39 @@ class UserMgtController {
    reqUserData.updatedDate = reqUserData.createdDate;
    reqUserData.role = 'user';
    console.log("data --------------------------------"+ reqUserData);
-   reqUserData.save(function(err, data) {
+  //var fileData =   req.body.file.split(";base64,").pop();
+  var imageBuffer = this.decodeBase64Image(req.body.file);
+  reqUserData.save(function(err, data) {
       if (err) {
         res.send(err);
       } else {
+         if(req.body.file){
+           var filename=data._id+"_avtar.jpg";
+          
+          fs.writeFile('uploads/'+filename, imageBuffer.data, function(err) {});
+          
+        }
         res.status(200).send({value : 'user added succesfull'});
       }
     });
-  }   
+
+    
+  }  
+   decodeBase64Image(dataString) {
+    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+      response = {};
+  
+    if (matches.length !== 3) {
+      return new Error('Invalid input string');
+    }
+  
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+  
+    return response;
+  }
+  
+  
   updateUser(req,res){
     console.log(req.body)
     //var umgt = new usermgt(req.body);
@@ -57,7 +96,17 @@ class UserMgtController {
           }
       });
   }
-
+ getImg(req, res) {
+  var imgName =   "uploads/"+req.params.id+"_avtar.jpg";
+  var base64str = this.base64_encode(imgName);
+  res.send( base64str);
+  }
+   base64_encode(file) {
+    // read binary data
+    var bitmap = fs.readFileSync(file);
+    // convert binary data to base64 encoded string
+    return new Buffer(bitmap).toString('base64');
+}
   login(req,res){
     //var reqUser = new user(req.body);
     usermgt.findOne({email : req.body.username}, function(err, data) {

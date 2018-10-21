@@ -10,4 +10,5 @@ export interface User {
     RegisteredVia:string;
     LastLoginDate:string;
     LastLoginDevice:string;
-  }
+    file: any;
+}
