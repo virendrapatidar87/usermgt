@@ -37,8 +37,7 @@ export class AdduserComponent implements OnInit {
         gender:[''],
         dateofbirth: [''],
         id: [''],
-        userPic: [null, Validators.required],
-        file: [null, Validators.required]
+        userPic: ['']
     });
     
   
@@ -51,6 +50,7 @@ export class AdduserComponent implements OnInit {
       'gender': data.gender,
       'id': data._id,
       'dateofbirth': 'sadsa',
+      'userPic' : ''
     })
     this.btnSubmit = "Update";
     }

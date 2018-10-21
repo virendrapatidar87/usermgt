@@ -47,7 +47,8 @@ const appRoutes: Routes = [
     AppFooterComponent,
     UserlistComponent,
     AdduserComponent,
-    ViewuserComponent
+    ViewuserComponent,
+    
 
   ],
   imports: [

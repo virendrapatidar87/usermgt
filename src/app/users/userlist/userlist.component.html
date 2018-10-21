@@ -18,22 +18,24 @@
           <table class="table mt-3 border-top">
             <thead>
               <tr>
+                <th>Avatar</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Added on</th>
                 <th>Registered Via</th>
                 
-                <th>Avtar</th>
+                
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let u of lstUser$ | async">
+                <td> <img src="{{u.file}}"  alt="image"/></td>
                 <td>{{u.fullName}}</td>
                 <td>{{u.email}}</td>
                 <td>{{u.updatedDate}}</td>
                 <td>{{u.RegisteredVia}}</td>
-                <td> <img src="{{getImg(u._id)}}" alt="image"/></td>
+                
                 <td>  <div class="btn-group mr-2">
                     <button type="button" class="btn btn-light" (click)="edit(u._id)"><i class="mdi mdi-alert-circle-outline"></i></button>
                     <button type="button" class="btn btn-light" (click)="delete(u._id)"><i class="mdi mdi-delete-empty"></i></button>

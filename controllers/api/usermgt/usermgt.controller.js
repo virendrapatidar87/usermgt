@@ -37,7 +37,12 @@ class UserMgtController {
    reqUserData.role = 'user';
    console.log("data --------------------------------"+ reqUserData);
   //var fileData =   req.body.file.split(";base64,").pop();
-  var imageBuffer = this.decodeBase64Image(req.body.file);
+
+  var imageBuffer;
+    if(req.body.file){
+      imageBuffer=  this.decodeBase64Image(req.body.file);
+  }
+  
   reqUserData.save(function(err, data) {
       if (err) {
         res.send(err);
@@ -92,14 +97,35 @@ class UserMgtController {
           if (err) {
               res.send(err);
           } else {
-              res.send(data);
+            
+            console.log(data.length+"djkkhkjhfkjhdj");
+           for(let i=0;i<data.length;i++  ){
+           // console.log(JSON.stringify(data[i])); 
+            var imgName =   "uploads/"+data[i]._id+"_avtar.jpg";
+            var bitmap;
+            if(fs.existsSync(imgName)){
+            bitmap = fs.readFileSync(imgName);
+            }else{
+              bitmap = fs.readFileSync("uploads/icon.jpg");
+            }
+            var base64str = 'data:image/jpg;base64,'+new Buffer(bitmap).toString('base64');
+            //console.log(base64str);
+            var convertedJSON = JSON.parse(JSON.stringify(data[i]));
+            convertedJSON.file = base64str;
+            data[i] = convertedJSON;
+           // var d = JSON.parse(data[i]);
+            //d.file =base64str;
+//data[i] = JSON.stringify(d);
+            }
+           
+            res.send(data);
           }
       });
   }
- getImg(req, res) {
-  var imgName =   "uploads/"+req.params.id+"_avtar.jpg";
-  var base64str = this.base64_encode(imgName);
-  res.send( base64str);
+ getImg(id) {
+  var imgName =   "uploads/"+id+"_avtar.jpg";
+  var base64str = 'data:image/jpg;base64,'+this.base64_encode(imgName);
+ // res.send( 'data:image/jpg;base64,'+base64str);
   }
    base64_encode(file) {
     // read binary data

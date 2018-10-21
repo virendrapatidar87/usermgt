@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 export class UserlistComponent implements OnInit {
   lstUser$;
   errorMessage;
+  url ;
   constructor(private usvc:UsersvcService,private router: Router) {
-   
+   this.url = usvc.path;
     
    }
 
@@ -35,8 +36,8 @@ export class UserlistComponent implements OnInit {
     /* this.id = id;
     this.openDialog(); */
   }
-   getImg(id){
-   console.log("------------------------------------------------------");
-   return this.usvc.getImgById(id)
+  async getImg(id){
+   console.log("------------------------------------------------------"+id);
+   return 'data:image/jpg;base64,'+this.usvc.getImgById(id);
       }
 }

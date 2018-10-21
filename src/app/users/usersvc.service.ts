@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsersvcService {
-  private readonly path='http://localhost:8080/api/usermgt/';
+   readonly path='http://localhost:8080/api/usermgt/';
   constructor(private http: HttpClient ) {
     
   }
@@ -45,8 +45,16 @@ export class UsersvcService {
     let header = new HttpHeaders({'x-access-token':this.getToken()});
        return this.http.get(this.path+id,{headers : header})
   }
-  getImgById(id) : any  {
+  getImgById(id) : Observable<any>  {
+	    console.log("get img data " + this.path);
     let header = new HttpHeaders({'x-access-token':this.getToken()});
-       return this.http.get(this.path+"avatar/"+id,{headers : header})
-  }
+   return    this.http.get(this.path+'avatar/' +id,{headers : header});/* .subscribe(data => {
+     console.log(data);
+     return  data;
+    }, error => {
+      return error;
+    });
+	return null; */
+
+ }
 }
