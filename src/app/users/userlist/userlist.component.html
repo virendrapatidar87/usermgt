@@ -1,4 +1,4 @@
-<div class="row grid-margin">
+<div *ngIf="isList;else viewcontent" class="row grid-margin">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -36,9 +36,10 @@
                 <td>{{u.updatedDate}}</td>
                 <td>{{u.RegisteredVia}}</td>
                 
-                <td>  <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-light" (click)="edit(u._id)"><i class="mdi mdi-alert-circle-outline"></i></button>
-                    <button type="button" class="btn btn-light" (click)="delete(u._id)"><i class="mdi mdi-delete-empty"></i></button>
+                <td>  <div class="btn-group ">
+                    <button type="button" class="btn btn-outline-secondary icon-btn" (click)="edit(u._id)"><i class="mdi mdi-border-color"></i></button>
+                    <button type="button" class="btn btn-outline-secondary icon-btn" (click)="view(u)"><i class="mdi mdi-alert-circle-outline"></i></button>
+                    <button type="button" class="btn btn-outline-secondary icon-btn" (click)="delete(u._id)"><i class="mdi mdi-delete-empty"></i></button>
                   </div></td>
 
               </tr>
@@ -63,3 +64,60 @@
     </div>
   </div>
 </div>
+<ng-template #viewcontent  class="row grid-margin">
+  <div class="row">
+
+      <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <img style="height: 159px;" src="{{uView.file}}"  alt="image"/>
+            </div>
+            <div class="card-footer">
+                <button  type="button"     
+                (click)="gotoList()"
+                class="btn btn-primary mr-2 pull-right">back</button>
+            </div>
+          </div> 
+        </div>
+      
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title"> User Preview</h6>
+        <label class="card-text">
+         Name: {{uView.fullName}}
+        </label>  <br>
+        <label class="card-text">
+         Email: {{uView.email}}
+        </label>  <br>
+        <label class="card-text">
+         Updated Date: {{uView.updatedDate}}
+        </label>  <br>
+        <label class="card-text">
+         Registered Via: {{uView.RegisteredVia}}
+        </label>  
+      </div>
+      
+    </div>
+  </div>
+   
+ 
+  </div>
+  
+  <div class="row">
+      <div class="col-12">
+      <canvas #ch
+          baseChart #baseChart="base-chart"
+          [chartType]="'bar'"
+          [datasets]="chartData"
+          [labels]="labels"
+          [options]="chartOptions"
+          [legend]="true"
+          [colors]="colors"
+          (chartClick)="onChartClick($event)">
+      </canvas>
+    </div>
+    </div>
+</ng-template>
+
+

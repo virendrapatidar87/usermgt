@@ -57,4 +57,8 @@ export class UsersvcService {
 	return null; */
 
  }
+ getUserTargetData(id): Observable<any>  {
+  let header = new HttpHeaders({'x-access-token':this.getToken()});
+     return this.http.get('http://localhost:8080/api/usertarget/user/'+id,{headers : header})
+}
 }
