@@ -1,0 +1,64 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title">Manage Tips</h6>
+      <div class="d-flex table-responsive">
+        <div class="btn-group mr-2">
+          <a [routerLink]="['/addtip']" class="btn btn-sm btn-info"><i class="mdi mdi-plus-circle-outline"></i> Add</a>
+        </div>
+      
+       
+        <div class="btn-group ml-auto mr-2 border-0">
+          <input type="text" class="form-control" placeholder="Search Here">
+        </div>
+       
+      </div>
+      <div class="table-responsive">
+        <table class="table mt-3 border-top">
+          <thead>
+            <tr>
+              <th>Heading</th>
+              <th>Tip Text</th>
+              <th>Min Range</th>
+              <th>Max Range</th>
+              <th>Added On</th>
+             
+              
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+             
+            <tr *ngFor="let u of lstTips$ | async">
+              <td> {{u.tipHeading}}</td>
+              <td>{{u.tipText}}</td>
+              <td>{{u.minRange}}</td>
+              <td>{{u.maxRange}}</td>
+              <td>{{u.createdDate}}</td>
+              
+              <td>  <div class="btn-group ">
+                  <button type="button" class="btn btn-outline-secondary icon-btn" (click)="edit(u._id)"><i class="mdi mdi-border-color"></i></button>
+                   <button type="button" class="btn btn-outline-secondary icon-btn" (click)="delete(u._id)"><i class="mdi mdi-delete-empty"></i></button>
+                </div></td>
+
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row mt-4">
+        <p class="mb-3 mb-sm-0">Showing 1 to 20 of 20 entries</p>
+        <nav>
+          <ul class="pagination pagination-info mb-0">
+            <li class="page-item"><a class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">4</a></li>
+            <li class="page-item"><a class="page-link"><i class="mdi mdi-chevron-right"></i></a></li>
+          </ul>
+        </nav>
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -21,13 +21,15 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import {UserlistComponent} from './users/userlist/userlist.component';
 import {AdduserComponent} from './users/adduser/adduser.component';
 import {ViewuserComponent} from './users/viewuser/viewuser.component';
-
+import { NouisliderModule } from 'ng2-nouislider';
 import { UsersvcService } from './users/usersvc.service';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthService } from './auth.service';
 import {NgxEditorModule} from 'ngx-editor';
 import { EditpageComponent } from './managepage/editpage/editpage.component';
-import { ChartsModule } from 'ng2-charts'
+import { ChartsModule } from 'ng2-charts';
+import { TipsListComponent } from './manageTips/tips-list/tips-list.component';
+import { ManageTipsComponent } from './manageTips/manage-tips/manage-tips.component'
 const appRoutes: Routes = [
    { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGaurdService] },
    { path: 'login', component: LoginComponent },
@@ -35,6 +37,10 @@ const appRoutes: Routes = [
    { path: 'adduser/:id', component: AdduserComponent,canActivate:[AuthGaurdService] },
    { path: 'adduser', component: AdduserComponent,canActivate:[AuthGaurdService] },
    { path: 'managePage/:id', component:EditpageComponent,canActivate:[AuthGaurdService]},
+   { path: 'manageTips', component: TipsListComponent,canActivate:[AuthGaurdService] },
+   { path: 'addtip/:id', component: ManageTipsComponent,canActivate:[AuthGaurdService] },
+   { path: 'addtip', component: ManageTipsComponent,canActivate:[AuthGaurdService] },
+  
    { path: '', component: DashboardComponent,canActivate:[AuthGaurdService] }];
 
 
@@ -50,13 +56,15 @@ const appRoutes: Routes = [
     UserlistComponent,
     AdduserComponent,
     ViewuserComponent,
-    EditpageComponent
+    EditpageComponent,
+    TipsListComponent,
+    ManageTipsComponent
 
 
   ],
   imports: [
     BrowserModule, HttpClientModule,  BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
-    NgxEditorModule,ChartsModule, RouterModule.forRoot(
+    NgxEditorModule,ChartsModule, NouisliderModule, RouterModule.forRoot(
 
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

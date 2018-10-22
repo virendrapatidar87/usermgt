@@ -88,21 +88,21 @@ if(err){
     console.log(data.length+ " ******************** ")
     if(data.length > 0){
 console.log("pages allready exist");
-for (k = 0; k <admPages.length; k++) {
-    pages.findOneAndRemove({ "name":admPages[k].name}, function(err,data) {
-        if (err) {
-        //  res.send(err)";
-        console.log("error "+err);  
-        } else {
-         console.log("delete record for pages"+data)
-         var mgtSavePage = new pages (data);
+// for (k = 0; k <admPages.length; k++) {
+//     pages.findOneAndRemove({ "name":admPages[k].name}, function(err,data) {
+//         if (err) {
+//         //  res.send(err)";
+//         console.log("error "+err);  
+//         } else {
+//          console.log("delete record for pages"+data)
+//          var mgtSavePage = new pages (data);
              
-             mgtSavePage.createdDate = commanObject.getCurrnetDate();
-             console.log(JSON.stringify(mgtSavePage));
-             mgtSavePage.save();
-        }
-      });
-    }
+//              mgtSavePage.createdDate = commanObject.getCurrnetDate();
+//              console.log(JSON.stringify(mgtSavePage));
+//              mgtSavePage.save();
+//         }
+//       });
+//     }
     }else{
         for (k = 0; k <admPages.length; k++) {
             

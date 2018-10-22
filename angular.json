@@ -24,7 +24,8 @@
             ],
             "styles": [
               "src/styles.css",
-			  "src/perfect-scrollbar.min.css"
+        "src/perfect-scrollbar.min.css",
+        "node_modules/nouislider/distribute/nouislider.min.css"
             ],
             "scripts": [
 			"node_modules/jquery/dist/jquery.min.js",
@@ -41,8 +42,9 @@
 			"node_modules/raphael/raphael.min.js",
 			"node_modules/morris.js/morris.min.js",
       "node_modules/jquery-sparkline/jquery.sparkline.min.js",
-      "node_modules/chart.js/dist/Chart.min.js"
-			
+      "node_modules/chart.js/dist/Chart.min.js",
+      "node_modules/nouislider/distribute/nouislider.js"
+		
 			
 			]
           },
