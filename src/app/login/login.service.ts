@@ -12,11 +12,11 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   register(user) : Observable<any> {
-    return this.http.post('http://localhost:8080/api/user/register/', user)
+    return this.http.post('/api/user/register/', user)
       
   }
 
   login(user) : Observable<any>{
-    return this.http.post('http://localhost:8080/api/usermgt/login/', user)
+    return this.http.post('/api/usermgt/login/', user)
 }
 }

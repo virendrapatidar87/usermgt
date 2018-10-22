@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TipsService {
 
-  readonly path='http://localhost:8080/api/managetips/';
+  readonly path='/api/managetips/';
   constructor(private http: HttpClient ) {
     
   }

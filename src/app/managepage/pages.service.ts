@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PagesService {
-  private readonly path='http://localhost:8080/api/pagemgt/';
+  private readonly path='/api/pagemgt/';
   constructor(private http: HttpClient) { }
   getToken() {
     return localStorage.getItem('currentUser');

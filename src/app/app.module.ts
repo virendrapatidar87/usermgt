@@ -15,7 +15,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import {UserlistComponent} from './users/userlist/userlist.component';
@@ -50,7 +49,7 @@ const appRoutes: Routes = [
     LoginComponent,
     AppHeaderComponent,
     DashboardComponent,
-    RegisterComponent,
+    
     AppNavbarComponent,
     AppFooterComponent,
     UserlistComponent,
@@ -72,7 +71,7 @@ const appRoutes: Routes = [
   ],
   entryComponents: [
     LoginComponent,
-    DashboardComponent,RegisterComponent,AppNavbarComponent,UserlistComponent],
+    DashboardComponent,AppNavbarComponent,UserlistComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: MyHttpInterceptor,

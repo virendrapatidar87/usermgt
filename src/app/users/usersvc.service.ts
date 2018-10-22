@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsersvcService {
-   readonly path='http://localhost:8080/api/usermgt/';
+   readonly path='/api/usermgt/';
   constructor(private http: HttpClient ) {
     
   }
