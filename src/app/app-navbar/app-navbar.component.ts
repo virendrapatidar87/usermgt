@@ -8,13 +8,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app-navbar.component.css']
 })
 export class AppNavbarComponent implements OnInit {
-
+  user;
   constructor(private authSvc :AuthService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+   this.user = JSON.parse(localStorage.getItem("loggedInUser")); 
   }
   onLogOut() : void {
     localStorage.removeItem('currentUser'); 
+     localStorage.removeItem('loggedInUser'); 
     this.authSvc.setIsLogin(); 
     console.log(' ***********Log Out**********************'); 
     this.router.navigate(['/login']);

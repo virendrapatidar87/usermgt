@@ -63,10 +63,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule, HttpClientModule,  BrowserAnimationsModule, FormsModule, ReactiveFormsModule,
-    NgxEditorModule,ChartsModule, NouisliderModule, RouterModule.forRoot(
-
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+    NgxEditorModule,ChartsModule, NouisliderModule, 
+    RouterModule.forRoot(appRoutes,
+      {onSameUrlNavigation: 'reload' } // <-- debugging purposes only
     ),
   ],
   entryComponents: [

@@ -25,11 +25,16 @@ app.use(function (req, res, next) {
 });
 console.log(path.join(__dirname, 'dist')+"-------------------")
 app.use(express.static(path.join(__dirname, 'dist/usermgt')));
+
+
 //app.use('/usermgt', express.static(path.join(__dirname, 'dist')));
 //app.use('/sample', sample); 
 //var bodyParser = require('body-parser');
 
 router.load(app, './controllers');
+app.use("/*", function(req, resp) {
+  resp.sendFile(path.join(__dirname, 'dist/usermgt/index.html'));
+});
 	 var server = http.createServer(app); 
 	server.listen(port, function () {  
 	    

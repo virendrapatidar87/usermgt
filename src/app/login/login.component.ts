@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit
   }
 
   onLogin(user) : void {
-    this.newService.login(user).subscribe(data => { console.log(data); localStorage.setItem('currentUser', data.token); this.authSvc.setIsLogin(); console.log(' ****************************************'+localStorage.getItem('currentUser')); this.router.navigate(['/dashboard']);}
+    this.newService.login(user).subscribe(data => { console.log(data); localStorage.setItem('currentUser', data.token);  localStorage.setItem('loggedInUser', JSON.stringify(data.user)); this.authSvc.setIsLogin(); console.log('Looged in user '+localStorage.getItem('loggedInUser')); this.router.navigate(['/dashboard']);}
       , error => error);
     
   }
