@@ -1,0 +1,50 @@
+const http = require('http');
+
+// Defaults
+const METHOD = 'POST';
+const ENDPOINT = '/callback';
+const PORT = 4000;
+const MAX_WAIT_TIME = 3000;
+
+class Listener {
+  constructor(port, method, endpoint, maxWaitTime) {
+    this._port = port ? port : PORT;
+    this._method = method ? method : METHOD;
+    this._endpoint = endpoint ? endpoint : ENDPOINT
+    this._maxWaitTime = maxWaitTime ? maxWaitTime : MAX_WAIT_TIME
+  }
+
+  run() {
+    return new Promise((resolve, reject) => {
+      const server = http.createServer((req, res) => {
+        if (req.url === this._endpoint && req.method === this._method) {
+          let body = '';
+          req.on('data', (data) => {
+            body += data;
+            if (body.length > 1e6)
+              req.connection.destroy();
+          });
+          req.on('end', () => {
+            let post = JSON.parse(body);
+            res.statusCode = 200;
+            res.end("OK");
+            resolve({ body: post, req: req });
+            server.close();
+          });
+        } else {
+          res.statusCode = 404;
+          res.end();
+          server.close();
+          reject("Some other endpoint was called.");
+        }
+      });
+      server.listen(this._port);
+      setTimeout(() => {
+        reject("Time Out.");
+      }, this._maxWaitTime);
+    });
+  }
+}
+
+module.exports = Listener;
+
